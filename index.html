@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Bake a Cake 🎂</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="game-wrapper">
+      <div class="game">
+        <h1 id="title"></h1>
+
+        <div class="progress-container">
+          <div id="progressBar" class="progress-bar"></div>
+        </div>
+
+        <div class="cake-container">
+          <img id="base" class="layer" />
+          <img id="cream" class="layer" />
+          <img id="decorations" class="layer" />
+          <img id="candles" class="layer" />
+        </div>
+
+        <div id="options" class="options"></div>
+
+        <div class="button-row">
+          <button id="nextBtn" class="next-btn">Next ➜</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="finalScreen" class="final hidden">
+      <div class="game">
+        <h1>Happy Birthday!</h1>
+        <p>You made the perfect cake 💛</p>
+        <button class="next-btn" onclick="restartGame()">
+          Make another cake
+        </button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
