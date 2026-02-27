@@ -7,7 +7,7 @@ const steps = [
     options: [
       { name: "🕷️", image: "images/spider-base.png", layer: "base" },
       { name: "🐍", image: "images/hp-base.png", layer: "base" },
-      { name: "🩷", image: "images/barbie-base.png", layer: "base" },
+      { name: "🎀", image: "images/barbie-base.png", layer: "base" },
       { name: "🎤", image: "images/ts-base.png", layer: "base" },
     ],
   },
@@ -16,7 +16,7 @@ const steps = [
     options: [
       { name: "🕷️", image: "images/spider-cream.png", layer: "cream" },
       { name: "🐍", image: "images/hp-cream.png", layer: "cream" },
-      { name: "🩷", image: "images/barbie-cream.png", layer: "cream" },
+      { name: "🎀", image: "images/barbie-cream.png", layer: "cream" },
       { name: "🎤", image: "images/ts-cream.png", layer: "cream" },
     ],
   },
@@ -26,7 +26,7 @@ const steps = [
     options: [
       { name: "🕷️", image: "images/spider-decor.png", layer: "decorations" },
       { name: "🐍", image: "images/hp-decor.png", layer: "decorations" },
-      { name: "🩷", image: "images/barbie-decor.png", layer: "decorations" },
+      { name: "🎀", image: "images/barbie-decor.png", layer: "decorations" },
       { name: "🎤", image: "images/ts-decor.png", layer: "decorations" },
     ],
   },
@@ -35,7 +35,7 @@ const steps = [
     options: [
       { name: "🕷️", image: "images/spider-candles.png", layer: "candles" },
       { name: "🐍", image: "images/hp-candles.png", layer: "candles" },
-      { name: "🩷", image: "images/barbie-candles.png", layer: "candles" },
+      { name: "🎀", image: "images/barbie-candles.png", layer: "candles" },
       { name: "🎤", image: "images/ts-candles.png", layer: "candles" },
     ],
   },
@@ -101,6 +101,12 @@ nextBtn.onclick = () => {
 function showFinal() {
   document.querySelector(".game").classList.add("hidden");
   document.getElementById("finalScreen").classList.remove("hidden");
+
+  confetti({
+    particleCount: 100,
+    spread: 70,
+    origin: { y: 0.6 }
+  });
 }
 
 function restartGame() {
