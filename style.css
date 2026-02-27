@@ -136,14 +136,14 @@ h1 {
 
 @media (max-width: 600px) {
   .game {
-    padding: 15px;
-    width: 95%;
+    padding: 20px;
+    width: 85%;
+    max-width: 400px;
   }
 
   .cake-container {
-    width: 280px;
-    height: 280px;
-    margin: 0 auto 15px;
+    width: 260px;
+    height: 260px;
   }
 
   .options {
@@ -151,36 +151,43 @@ h1 {
   }
 
   .option-btn {
-    padding: 12px 20px;
-    font-size: 1.2rem;
-    flex: 0 1 auto;
-    min-width: 60px;
+    padding: 12px 18px;
+    font-size: 1.3rem;
   }
 
   h1 {
     font-size: 1.8rem;
-    margin-bottom: 10px;
-  }
-
-  .progress-container {
-    height: 12px;
-    margin-bottom: 15px;
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 480px) {
+  .game {
+    padding: 15px;
+    width: 90%;
+  }
+
   .cake-container {
-    width: 240px;
-    height: 240px;
+    width: 220px;
+    height: 220px;
   }
 
   .option-btn {
-    padding: 10px 16px;
-    font-size: 1rem;
-    min-width: 50px;
+    padding: 10px 14px;
+    font-size: 1.1rem;
   }
 
   h1 {
     font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  .progress-container {
+    height: 10px;
+    margin-bottom: 15px;
+  }
+
+  .next-btn {
+    padding: 8px 16px;
+    font-size: 0.9rem;
   }
 }
