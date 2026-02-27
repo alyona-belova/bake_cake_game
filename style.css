@@ -92,8 +92,8 @@ h1 {
 }
 
 .next-btn {
-  padding: clamp(12px, 4vw, 20px) clamp(20px, 6vw, 30px);
-  font-size: clamp(1.1rem, 5vw, 1.5rem);
+  padding: clamp(10px, 2.5vw, 15px) clamp(15px, 4vw, 25px);
+  font-size: clamp(0.9rem, 3.5vw, 1.2rem);
   border: none;
   background: #ff4d6d;
   color: white;
@@ -102,7 +102,7 @@ h1 {
   font-weight: bold;
   transition: 0.2s;
   width: 100%;
-  max-width: 300px;
+  max-width: 250px;
 }
 
 .next-btn:hover {
