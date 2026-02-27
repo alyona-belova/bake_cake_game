@@ -70,8 +70,8 @@ h1 {
 }
 
 .option-btn {
-  padding: clamp(12px, 4vw, 20px) clamp(20px, 6vw, 30px);
-  font-size: clamp(1.2rem, 6vw, 2rem);
+  padding: clamp(10px, 3vw, 15px) clamp(15px, 4vw, 20px);
+  font-size: clamp(1rem, 4vw, 1.3rem);
   border: none;
   background: #ffd6e0;
   cursor: pointer;
