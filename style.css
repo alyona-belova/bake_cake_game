@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-family: "DynaPuff", system-ui;
   background: linear-gradient(135deg, #ffdde1, #ee9ca7);
   overflow-x: hidden;
 }
