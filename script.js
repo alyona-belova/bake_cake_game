@@ -102,6 +102,11 @@ function showFinal() {
   document.querySelector(".game").classList.add("hidden");
   document.getElementById("finalScreen").classList.remove("hidden");
 
+  document.getElementById("finalBase").src = selectedOptions[0]?.image || "";
+  document.getElementById("finalCream").src = selectedOptions[1]?.image || "";
+  document.getElementById("finalDecorations").src = selectedOptions[2]?.image || "";
+  document.getElementById("finalCandles").src = selectedOptions[3]?.image || "";
+
   confetti({
     particleCount: 100,
     spread: 70,
@@ -111,16 +116,57 @@ function showFinal() {
 
 function restartGame() {
   step = 0;
-
   selectedOptions = {};
 
   document.querySelector(".game").classList.remove("hidden");
   document.getElementById("finalScreen").classList.add("hidden");
 
   document.querySelectorAll(".layer").forEach((img) => (img.src = ""));
+  document.querySelectorAll(".final-layer").forEach((img) => (img.src = ""));
 
   updateProgress();
   loadStep();
 }
 
 loadStep();
+
+document.getElementById("downloadBtn")?.addEventListener("click", function () {
+  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d");
+
+  canvas.width = 300;
+  canvas.height = 300;
+
+  const layers = [
+    document.getElementById("finalBase"),
+    document.getElementById("finalCream"),
+    document.getElementById("finalDecorations"),
+    document.getElementById("finalCandles")
+  ];
+
+  let imagesLoaded = 0;
+
+  layers.forEach((img, _) => {
+    if (img.src) {
+      const layerImg = new Image();
+      layerImg.crossOrigin = "anonymous";
+      layerImg.onload = function () {
+        const x = (canvas.width - layerImg.width) / 2;
+        const y = (canvas.height - layerImg.height) / 2;
+        ctx.drawImage(layerImg, x, y, layerImg.width, layerImg.height);
+
+        imagesLoaded++;
+
+        if (imagesLoaded === layers.filter(img => img.src).length) {
+          const link = document.createElement("a");
+          link.download = "my-birthday-cake.png";
+          link.href = canvas.toDataURL("image/png");
+          link.click();
+        }
+      };
+      layerImg.src = img.src;
+    } else {
+      imagesLoaded++;
+    }
+  });
+});
