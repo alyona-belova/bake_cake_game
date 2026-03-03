@@ -165,6 +165,7 @@ h1 {
   transition: 0.2s;
   width: 100%;
   max-width: 250px;
+  margin: 10px 0;
 }
 
 .download-btn:hover {

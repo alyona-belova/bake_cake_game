@@ -137,17 +137,17 @@ document.getElementById("downloadBtn")?.addEventListener("click", function() {
     document.getElementById("finalDecorations"),
     document.getElementById("finalCandles")
   ];
-
+  
   let maxWidth = 0;
   let maxHeight = 0;
   let imagesToLoad = [];
-
+  
   layers.forEach((img) => {
     if (img.src) {
       imagesToLoad.push(img);
     }
   });
-
+  
   if (imagesToLoad.length === 0) return;
   
   let loadedCount = 0;
@@ -164,23 +164,30 @@ document.getElementById("downloadBtn")?.addEventListener("click", function() {
       loadedCount++;
       
       if (loadedCount === imagesToLoad.length) {
+        const padding = 0.2;
+        const canvasWidth = Math.round(maxWidth * (1 + padding));
+        const canvasHeight = Math.round(maxHeight * (1 + padding));
+        
         const canvas = document.createElement("canvas");
         const ctx = canvas.getContext("2d");
-
-        canvas.width = maxWidth;
-        canvas.height = maxHeight;
-
+        
+        canvas.width = canvasWidth;
+        canvas.height = canvasHeight;
+        
         ctx.fillStyle = "#FFFFFF";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+        const startX = (canvasWidth - maxWidth) / 2;
+        const startY = (canvasHeight - maxHeight) / 2;
+        
         loadedImages.forEach(img => {
-          const x = (canvas.width - img.width) / 2;
-          const y = (canvas.height - img.height) / 2;
+          const x = startX + (maxWidth - img.width) / 2;
+          const y = startY + (maxHeight - img.height) / 2;
           ctx.drawImage(img, x, y, img.width, img.height);
         });
-
+        
         const link = document.createElement("a");
-        link.download = "my_birthday_cake.png";
+        link.download = "my-birthday-cake.png";
         link.href = canvas.toDataURL("image/png");
         link.click();
       }
