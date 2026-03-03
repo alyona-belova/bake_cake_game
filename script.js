@@ -134,8 +134,11 @@ document.getElementById("downloadBtn")?.addEventListener("click", function () {
   const canvas = document.createElement("canvas");
   const ctx = canvas.getContext("2d");
 
-  canvas.width = 300;
-  canvas.height = 300;
+  canvas.width = 800;
+  canvas.height = 800;
+
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   const layers = [
     document.getElementById("finalBase"),
@@ -159,7 +162,7 @@ document.getElementById("downloadBtn")?.addEventListener("click", function () {
 
         if (imagesLoaded === layers.filter(img => img.src).length) {
           const link = document.createElement("a");
-          link.download = "my-birthday-cake.png";
+          link.download = "my_birthday_cake.png";
           link.href = canvas.toDataURL("image/png");
           link.click();
         }

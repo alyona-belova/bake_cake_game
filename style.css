@@ -157,7 +157,7 @@ h1 {
   padding: clamp(10px, 2.5vw, 15px) clamp(15px, 4vw, 25px);
   font-size: clamp(0.9rem, 3.5vw, 1.2rem);
   border: none;
-  background: #6aaf00;
+  background: #c268f6;
   color: white;
   cursor: pointer;
   border-radius: 12px;
@@ -167,6 +167,6 @@ h1 {
 }
 
 .download-btn:hover {
-  background: #62a200;
+  background: #b068db;
   transform: scale(1.05);
 }
