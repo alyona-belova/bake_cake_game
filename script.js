@@ -130,16 +130,7 @@ function restartGame() {
 
 loadStep();
 
-document.getElementById("downloadBtn")?.addEventListener("click", function () {
-  const canvas = document.createElement("canvas");
-  const ctx = canvas.getContext("2d");
-
-  canvas.width = 400;
-  canvas.height = 400;
-
-  ctx.fillStyle = "#FFFFFF";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-
+document.getElementById("downloadBtn")?.addEventListener("click", function() {
   const layers = [
     document.getElementById("finalBase"),
     document.getElementById("finalCream"),
@@ -147,29 +138,53 @@ document.getElementById("downloadBtn")?.addEventListener("click", function () {
     document.getElementById("finalCandles")
   ];
 
-  let imagesLoaded = 0;
+  let maxWidth = 0;
+  let maxHeight = 0;
+  let imagesToLoad = [];
 
-  layers.forEach((img, _) => {
+  layers.forEach((img) => {
     if (img.src) {
-      const layerImg = new Image();
-      layerImg.crossOrigin = "anonymous";
-      layerImg.onload = function () {
-        const x = (canvas.width - layerImg.width) / 2;
-        const y = (canvas.height - layerImg.height) / 2;
-        ctx.drawImage(layerImg, x, y, layerImg.width, layerImg.height);
-
-        imagesLoaded++;
-
-        if (imagesLoaded === layers.filter(img => img.src).length) {
-          const link = document.createElement("a");
-          link.download = "my_birthday_cake.png";
-          link.href = canvas.toDataURL("image/png");
-          link.click();
-        }
-      };
-      layerImg.src = img.src;
-    } else {
-      imagesLoaded++;
+      imagesToLoad.push(img);
     }
+  });
+
+  if (imagesToLoad.length === 0) return;
+  
+  let loadedCount = 0;
+  const loadedImages = [];
+  
+  imagesToLoad.forEach((img, index) => {
+    const layerImg = new Image();
+    layerImg.crossOrigin = "anonymous";
+    layerImg.onload = function() {
+      loadedImages[index] = layerImg;
+      maxWidth = Math.max(maxWidth, layerImg.width);
+      maxHeight = Math.max(maxHeight, layerImg.height);
+      
+      loadedCount++;
+      
+      if (loadedCount === imagesToLoad.length) {
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+
+        canvas.width = maxWidth;
+        canvas.height = maxHeight;
+
+        ctx.fillStyle = "#FFFFFF";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        loadedImages.forEach(img => {
+          const x = (canvas.width - img.width) / 2;
+          const y = (canvas.height - img.height) / 2;
+          ctx.drawImage(img, x, y, img.width, img.height);
+        });
+
+        const link = document.createElement("a");
+        link.download = "my_birthday_cake.png";
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+      }
+    };
+    layerImg.src = img.src;
   });
 });
