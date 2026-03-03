@@ -154,7 +154,9 @@ document.getElementById("downloadBtn")?.addEventListener("click", function () {
 
   if (!layers.length) return;
 
-  const scale = 3;
+  const scale = 3; // high quality
+  const padding = 80; // 👈 slightly bigger than cake (adjust 50–120 if needed)
+
   let maxWidth = 0;
   let maxHeight = 0;
   let loaded = 0;
@@ -172,14 +174,20 @@ document.getElementById("downloadBtn")?.addEventListener("click", function () {
         const canvas = document.createElement("canvas");
         const ctx = canvas.getContext("2d");
 
-        canvas.width = maxWidth * scale;
-        canvas.height = maxHeight * scale;
+        canvas.width = (maxWidth + padding) * scale;
+        canvas.height = (maxHeight + padding) * scale;
 
         ctx.scale(scale, scale);
 
+        ctx.fillStyle = "#ffffff";
+        ctx.fillRect(0, 0, maxWidth + padding, maxHeight + padding);
+
+        const startX = padding / 2;
+        const startY = padding / 2;
+
         loadedImages.forEach((image) => {
-          const x = (maxWidth - image.width) / 2;
-          const y = (maxHeight - image.height) / 2;
+          const x = startX + (maxWidth - image.width) / 2;
+          const y = startY + (maxHeight - image.height) / 2;
           ctx.drawImage(image, x, y);
         });
 
@@ -192,4 +200,16 @@ document.getElementById("downloadBtn")?.addEventListener("click", function () {
 
     tempImg.src = img.src;
   });
+});
+
+const music = document.getElementById("bgMusic");
+
+document.getElementById("playMusicBtn")?.addEventListener("click", () => {
+  music.volume = 0.05;
+  music.play();
+  musicStarted = true;
+});
+
+document.getElementById("stopMusicBtn")?.addEventListener("click", () => {
+  music.pause();
 });

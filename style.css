@@ -1,43 +1,73 @@
+html,
+body {
+  height: 100%;
+}
+
 body {
   margin: 0;
   font-family: "DynaPuff", system-ui;
   min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-
-  background:
-    radial-gradient(circle at 20% 30%, #ffb3c6 0%, transparent 40%),
-    radial-gradient(circle at 80% 70%, #c268f6 0%, transparent 40%),
-    radial-gradient(circle at 50% 50%, #ffe5ec 0%, #ffdde1 60%);
-  animation: moveGlow 12s ease-in-out infinite alternate;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: linear-gradient(135deg, #ffeaf4, #f3e8ff);
+  position: relative;
 }
 
-@keyframes moveGlow {
-  0% {
-    background-position:
-      0% 0%,
-      100% 100%,
-      center;
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.5;
+  z-index: -1;
+}
+
+body::before {
+  background: #ff9bd2;
+  top: -200px;
+  left: -200px;
+  animation: float1 15s ease-in-out infinite alternate;
+}
+
+body::after {
+  background: #c9a0ff;
+  bottom: -200px;
+  right: -200px;
+  animation: float2 18s ease-in-out infinite alternate;
+}
+
+@keyframes float1 {
+  from {
+    transform: translate(0, 0);
   }
-  100% {
-    background-position:
-      20% 20%,
-      80% 80%,
-      center;
+  to {
+    transform: translate(80px, 60px);
+  }
+}
+
+@keyframes float2 {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(-60px, -80px);
   }
 }
 
 .game {
   background: white;
-  padding: 20px;
-  border-radius: 20px;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+  padding: 20px 24px;
+  border-radius: 25px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  width: min(520px, 100%);
   text-align: center;
-  width: min(95%, 500px);
-  margin: 10px;
-  box-sizing: border-box;
 }
 
 h1 {
@@ -48,11 +78,11 @@ h1 {
 
 .progress-container {
   width: 100%;
-  height: clamp(12px, 3vw, 20px);
+  height: clamp(10px, 2.5vw, 16px);
   background: #ffe5ec;
   border-radius: 10px;
   overflow: hidden;
-  margin-bottom: 20px;
+  margin-bottom: 8px;
 }
 
 .progress-bar {
@@ -64,9 +94,9 @@ h1 {
 
 .cake-container {
   position: relative;
-  width: min(80vw, 400px);
-  height: min(80vw, 400px);
-  margin: 0 auto 20px;
+  width: min(70vw, 320px);
+  height: min(70vw, 320px);
+  margin: 0 auto 12px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -204,4 +234,26 @@ h1 {
 .final-buttons .next-btn {
   width: auto;
   max-width: none;
+}
+
+.music-controls {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 15px;
+}
+
+.music-controls button {
+  padding: 8px 15px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  background: #c268f6;
+  color: white;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.music-controls button:hover {
+  transform: scale(1.05);
 }
