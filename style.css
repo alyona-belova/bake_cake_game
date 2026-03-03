@@ -163,7 +163,8 @@ h1 {
   border-radius: 12px;
   font-weight: bold;
   transition: 0.2s;
-  margin: 10px 0;
+  width: 100%;
+  max-width: 250px;
 }
 
 .download-btn:hover {
