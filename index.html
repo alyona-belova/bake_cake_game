@@ -2,14 +2,20 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <meta property="og:title" content="Let's Bake a Cake!">
-    <meta property="og:image" content="images/logo.jpg">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes"
+    />
+    <meta property="og:title" content="Let's Bake a Cake!" />
+    <meta property="og:image" content="images/logo.jpg" />
     <title>Bake a Cake 🎂</title>
     <link rel="stylesheet" href="style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div class="game-wrapper">
@@ -30,14 +36,14 @@
         <div id="options" class="options"></div>
 
         <div class="button-row">
-          <button id="nextBtn" class="next-btn">next ➜</button>
+          <button id="nextBtn" class="next-btn">Next ➜</button>
         </div>
       </div>
     </div>
 
     <div id="finalScreen" class="final hidden">
       <div class="game">
-        <h1>Happy Birthday!</h1>
+        <h1>Happy Birthday, girl!</h1>
         <p>Your cake is perfectly baked 💜</p>
         <div class="final-cake-container">
           <img id="finalBase" class="final-layer" />
@@ -45,14 +51,17 @@
           <img id="finalDecorations" class="final-layer" />
           <img id="finalCandles" class="final-layer" />
         </div>
-        
-        <button id="downloadBtn" class="download-btn">download ↓</button>
-        <button class="next-btn" onclick="restartGame()">
-          make another cake
-        </button>
+
+        <div class="final-buttons">
+          <button id="downloadBtn" class="download-btn">Download ↓</button>
+          <button class="next-btn" onclick="restartGame()">
+            Make another cake
+          </button>
+        </div>
       </div>
     </div>
 
+    <audio id="bgMusic" src="images/shake_it_off.mp3" loop></audio>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1"></script>
     <script src="script.js"></script>
   </body>

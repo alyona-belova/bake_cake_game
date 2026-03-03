@@ -1,11 +1,32 @@
 body {
   margin: 0;
   font-family: "DynaPuff", system-ui;
-  background: linear-gradient(135deg, #ffdde1, #ee9ca7);
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+
+  background:
+    radial-gradient(circle at 20% 30%, #ffb3c6 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, #c268f6 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, #ffe5ec 0%, #ffdde1 60%);
+  animation: moveGlow 12s ease-in-out infinite alternate;
+}
+
+@keyframes moveGlow {
+  0% {
+    background-position:
+      0% 0%,
+      100% 100%,
+      center;
+  }
+  100% {
+    background-position:
+      20% 20%,
+      80% 80%,
+      center;
+  }
 }
 
 .game {
@@ -119,7 +140,6 @@ h1 {
   position: fixed;
   top: 0;
   left: 0;
-  background: linear-gradient(135deg, #ffdde1, #ee9ca7);
   width: 100%;
   height: 100%;
   display: flex;
@@ -165,10 +185,23 @@ h1 {
   transition: 0.2s;
   width: 100%;
   max-width: 250px;
-  margin: 10px;
 }
 
 .download-btn:hover {
   background: #b068db;
   transform: scale(1.05);
+}
+
+.final-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+
+.final-buttons .download-btn,
+.final-buttons .next-btn {
+  width: auto;
+  max-width: none;
 }

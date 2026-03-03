@@ -1,5 +1,6 @@
 let step = 0;
 let selectedOptions = {};
+let musicStarted = false;
 
 const steps = [
   {
@@ -79,6 +80,13 @@ function loadStep() {
     }
 
     btn.onclick = () => {
+      if (!musicStarted) {
+        const music = document.getElementById("bgMusic");
+        music.volume = 0.05;
+        music.play();
+        musicStarted = true;
+      }
+
       document
         .querySelectorAll(".option-btn")
         .forEach((b) => b.classList.remove("selected"));
@@ -104,19 +112,25 @@ function showFinal() {
 
   document.getElementById("finalBase").src = selectedOptions[0]?.image || "";
   document.getElementById("finalCream").src = selectedOptions[1]?.image || "";
-  document.getElementById("finalDecorations").src = selectedOptions[2]?.image || "";
+  document.getElementById("finalDecorations").src =
+    selectedOptions[2]?.image || "";
   document.getElementById("finalCandles").src = selectedOptions[3]?.image || "";
 
   confetti({
     particleCount: 100,
     spread: 70,
-    origin: { y: 0.6 }
+    origin: { y: 0.6 },
   });
 }
 
 function restartGame() {
   step = 0;
   selectedOptions = {};
+
+  const music = document.getElementById("bgMusic");
+  music.pause();
+  music.currentTime = 0;
+  musicStarted = false;
 
   document.querySelector(".game").classList.remove("hidden");
   document.getElementById("finalScreen").classList.add("hidden");
@@ -130,68 +144,52 @@ function restartGame() {
 
 loadStep();
 
-document.getElementById("downloadBtn")?.addEventListener("click", function() {
+document.getElementById("downloadBtn")?.addEventListener("click", function () {
   const layers = [
     document.getElementById("finalBase"),
     document.getElementById("finalCream"),
     document.getElementById("finalDecorations"),
-    document.getElementById("finalCandles")
-  ];
-  
+    document.getElementById("finalCandles"),
+  ].filter((img) => img.src);
+
+  if (!layers.length) return;
+
+  const scale = 3;
   let maxWidth = 0;
   let maxHeight = 0;
-  let imagesToLoad = [];
-  
-  layers.forEach((img) => {
-    if (img.src) {
-      imagesToLoad.push(img);
-    }
-  });
-  
-  if (imagesToLoad.length === 0) return;
-  
-  let loadedCount = 0;
+  let loaded = 0;
   const loadedImages = [];
-  
-  imagesToLoad.forEach((img, index) => {
-    const layerImg = new Image();
-    layerImg.crossOrigin = "anonymous";
-    layerImg.onload = function() {
-      loadedImages[index] = layerImg;
-      maxWidth = Math.max(maxWidth, layerImg.width);
-      maxHeight = Math.max(maxHeight, layerImg.height);
-      
-      loadedCount++;
-      
-      if (loadedCount === imagesToLoad.length) {
-        const padding = 0.2;
-        const canvasWidth = Math.round(maxWidth * (1 + padding));
-        const canvasHeight = Math.round(maxHeight * (1 + padding));
-        
+
+  layers.forEach((img, index) => {
+    const tempImg = new Image();
+    tempImg.onload = function () {
+      loadedImages[index] = tempImg;
+      maxWidth = Math.max(maxWidth, tempImg.width);
+      maxHeight = Math.max(maxHeight, tempImg.height);
+      loaded++;
+
+      if (loaded === layers.length) {
         const canvas = document.createElement("canvas");
         const ctx = canvas.getContext("2d");
-        
-        canvas.width = canvasWidth;
-        canvas.height = canvasHeight;
-        
-        ctx.fillStyle = "#FFFFFF";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        const startX = (canvasWidth - maxWidth) / 2;
-        const startY = (canvasHeight - maxHeight) / 2;
-        
-        loadedImages.forEach(img => {
-          const x = startX + (maxWidth - img.width) / 2;
-          const y = startY + (maxHeight - img.height) / 2;
-          ctx.drawImage(img, x, y, img.width, img.height);
+        canvas.width = maxWidth * scale;
+        canvas.height = maxHeight * scale;
+
+        ctx.scale(scale, scale);
+
+        loadedImages.forEach((image) => {
+          const x = (maxWidth - image.width) / 2;
+          const y = (maxHeight - image.height) / 2;
+          ctx.drawImage(image, x, y);
         });
-        
-        const link = document.createElement("a");
-        link.download = "my-birthday-cake.png";
-        link.href = canvas.toDataURL("image/png");
-        link.click();
+
+        const dataUrl = canvas.toDataURL("image/png");
+
+        const newTab = window.open();
+        newTab.document.write(`<img src="${dataUrl}" style="width:100%">`);
       }
     };
-    layerImg.src = img.src;
+
+    tempImg.src = img.src;
   });
 });
