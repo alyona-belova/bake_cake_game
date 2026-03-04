@@ -203,13 +203,16 @@ document.getElementById("downloadBtn")?.addEventListener("click", function () {
 });
 
 const music = document.getElementById("bgMusic");
+const musicBtn = document.getElementById("musicToggleBtn");
 
-document.getElementById("playMusicBtn")?.addEventListener("click", () => {
-  music.volume = 0.05;
-  music.play();
-  musicStarted = true;
-});
-
-document.getElementById("stopMusicBtn")?.addEventListener("click", () => {
-  music.pause();
+musicBtn?.addEventListener("click", () => {
+  if (music.paused) {
+    music.volume = 0.05;
+    music.play();
+    musicStarted = true;
+    musicBtn.textContent = "⏸︎ Stop Music";
+  } else {
+    music.pause();
+    musicBtn.textContent = "▶ Play Music";
+  }
 });
