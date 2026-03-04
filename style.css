@@ -72,7 +72,7 @@ body::after {
 
 h1 {
   margin-bottom: 15px;
-  color: #6b2643;
+  color: #fa6e79;
   font-size: clamp(1.8rem, 8vw, 2.5rem);
 }
 
@@ -88,7 +88,7 @@ h1 {
 .progress-bar {
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, #c878af, #9a4d76);
+  background: #c878af;
   transition: width 0.3s ease;
 }
 
