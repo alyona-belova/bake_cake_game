@@ -260,6 +260,6 @@ h1 {
 
 .final p {
   font-family: 'Quicksand', sans-serif;
-  font-weight: 600;
+  font-weight: 400;
   font-size: clamp(1rem, 4vw, 1.3rem);
 }
