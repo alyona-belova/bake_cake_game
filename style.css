@@ -257,3 +257,7 @@ h1 {
 .music-controls button:hover {
   transform: scale(1.05);
 }
+
+.final p {
+  font-family: system-ui, sans-serif;
+}
