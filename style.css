@@ -30,14 +30,14 @@ body::after {
 }
 
 body::before {
-  background: #ff9bd2;
+  background: #ffa2ac;
   top: -200px;
   left: -200px;
   animation: float1 15s ease-in-out infinite alternate;
 }
 
 body::after {
-  background: #c9a0ff;
+  background: #cc99ff;
   bottom: -200px;
   right: -200px;
   animation: float2 18s ease-in-out infinite alternate;
@@ -72,7 +72,7 @@ body::after {
 
 h1 {
   margin-bottom: 15px;
-  color: #ff4d6d;
+  color: #6b2643;
   font-size: clamp(1.8rem, 8vw, 2.5rem);
 }
 
@@ -88,7 +88,7 @@ h1 {
 .progress-bar {
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, #ff69b4, #ff1493);
+  background: linear-gradient(90deg, #c878af, #9a4d76);
   transition: width 0.3s ease;
 }
 
@@ -124,7 +124,7 @@ h1 {
   padding: clamp(10px, 3vw, 15px) clamp(15px, 4vw, 20px);
   font-size: clamp(1rem, 4vw, 1.3rem);
   border: none;
-  background: #ffd6e0;
+  background: #ffd1d5;
   cursor: pointer;
   border-radius: 12px;
   transition: 0.2s;
@@ -133,12 +133,12 @@ h1 {
 }
 
 .option-btn:hover {
-  background: #ffb3c6;
+  background: #f8b3b8;
   transform: scale(1.05);
 }
 
 .option-btn.selected {
-  background: #ffb3c6;
+  background: #f8b3b8;
   transform: scale(1.1);
 }
 
@@ -146,7 +146,7 @@ h1 {
   padding: clamp(10px, 2.5vw, 15px) clamp(15px, 4vw, 25px);
   font-size: clamp(0.9rem, 3.5vw, 1.2rem);
   border: none;
-  background: #ff4d6d;
+  background: #fa6e79;
   color: white;
   cursor: pointer;
   border-radius: 12px;
@@ -157,7 +157,7 @@ h1 {
 }
 
 .next-btn:hover {
-  background: #ff1e4d;
+  background: #fd5f6d;
   transform: scale(1.05);
 }
 
@@ -207,7 +207,7 @@ h1 {
   padding: clamp(10px, 2.5vw, 15px) clamp(15px, 4vw, 25px);
   font-size: clamp(0.9rem, 3.5vw, 1.2rem);
   border: none;
-  background: #c268f6;
+  background: #c878af;
   color: white;
   cursor: pointer;
   border-radius: 12px;
@@ -218,7 +218,7 @@ h1 {
 }
 
 .download-btn:hover {
-  background: #b068db;
+  background: #c967aa;
   transform: scale(1.05);
 }
 
@@ -248,7 +248,7 @@ h1 {
   border-radius: 10px;
   border: none;
   cursor: pointer;
-  background: #c268f6;
+  background: #c878af;
   color: white;
   font-weight: bold;
   transition: 0.2s;
