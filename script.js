@@ -80,13 +80,6 @@ function loadStep() {
     }
 
     btn.onclick = () => {
-      if (!musicStarted) {
-        const music = document.getElementById("bgMusic");
-        music.volume = 0.05;
-        music.play();
-        musicStarted = true;
-      }
-
       document
         .querySelectorAll(".option-btn")
         .forEach((b) => b.classList.remove("selected"));
@@ -126,11 +119,6 @@ function showFinal() {
 function restartGame() {
   step = 0;
   selectedOptions = {};
-
-  const music = document.getElementById("bgMusic");
-  music.pause();
-  music.currentTime = 0;
-  musicStarted = false;
 
   document.querySelector(".game").classList.remove("hidden");
   document.getElementById("finalScreen").classList.add("hidden");
@@ -210,7 +198,7 @@ musicBtn?.addEventListener("click", () => {
     music.volume = 0.05;
     music.play();
     musicStarted = true;
-    musicBtn.textContent = "⏸︎ Stop Music";
+    musicBtn.textContent = "■ Stop Music";
   } else {
     music.pause();
     musicBtn.textContent = "▶ Play Music";
